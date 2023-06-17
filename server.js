@@ -7,7 +7,7 @@ const router = Router()
 // Configurações de conexão com o banco de dados
 const connection = mysql.createConnection({
   host: '127.0.0.1:3308',
-  user: 'root',
+  user: 'root', 
   password: '81885992',
   database: 'restaurante'
 });
@@ -34,9 +34,7 @@ router.post('/cadastroRestaurante', (req, res) => {
 });
 
 // Rota para lidar com o cadastro
-router.get('/cadastroRestaurante', (req, res) => {
-  // Extrai os dados enviados pelo formulário
-  const { razaoSocial, cnpj, nomeRestaurante, nomeProprietario, email, telefone, cep, rua, numero, bairro, cidade, estado, complemento, senha } = req.body;
+router.get('/pegarRestaurantes', (req, res) => {
 
   // Cria a query SQL para inserir os dados na tabela adequada
   const query = `INSERT INTO restaurante (razao_social, cnpj, nome_restaurante, nome_proprietario, email, telefone, cep, rua, numero, bairro, cidade, estado, complemento, senha) 
