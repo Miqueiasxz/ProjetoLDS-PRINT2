@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Tela de Login</title>
+  <style>
+    body {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background-image:url("Imagens/Fundo.jpg") ;
+      background-size:cover;
+    }
+
+    .container { 
+      background-color: white;
+      width: 50%;
+      padding: 20px;
+      flex-direction: column;
+      align-items: center;
+      display:flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .row { 
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      display:flex;
+      text-align: center;
+    }
+    .inputrow { 
+      margin: 2px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .container h2 {
+      margin-top: 20px;
+    }
+
+    .container img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+      filter: brightness(70%);
+    }
+
+    .container input[type="text"],
+    .container input[type="password"],
+    .container input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .container input[type="text"]:focus,
+    .container input[type="password"]:focus,
+    .container input[type="email"]:focus {
+      border-color: #2196F3;
+    }
+
+    .container .checkbox-forgot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .container .checkbox-forgot label {
+      margin-right: 5px;
+    }
+
+    .container .checkbox-forgot a {
+      margin-left: 5px;
+      color: #93C5FC; /* Azul claro */
+    }
+
+    .container input[type="submit"],
+    .container input[type="button"] {
+      width: 45%; /* Reduzindo a largura para acomodar um pequeno espaçamento */
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px; /* Adicionando margem para espaçamento entre os botões */
+    }
+
+    .container input[type="submit"]:hover,
+    .container input[type="button"]:hover {
+      background-color: #0d8aed;
+    }
+
+    .container .alternate-login {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .container .alternate-login span {
+      color: #333;
+    }
+
+    .container .register-link {
+      color: #2196F3;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .container .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .container .separator::before,
+    .container .separator::after {
+      content: "";
+      flex-grow: 1;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .container .separator span {
+      margin: 0 10px;
+      color: #333;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_API&libraries=places"></script>
+</head>
+<body>
+  <div class="container">
+    <img src="Imagens/MKX LOGO.png" class="logo" alt="Logo da empresa">
+    <h2>Cadastro de Restaurante</h2>
+    <form>
+      <div class="row">
+        <div class="inputrow">
+          <input type="text" placeholder="Razão Social" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="CNPJ" required>
+        </div>
+      </div>
+      <div class="inputrow">
+        <input type="text" placeholder="Nome do Restaurante" required>
+      </div>
+      <div class="inputrow">
+        <input type="text" placeholder="Nome do Proprietário" required>
+      </div>
+      <div class="row">
+        <div class="inputrow">
+          <input type="email" placeholder="E-mail" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="Telefone" id="telefone" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="inputrow">
+          <input type="text" placeholder="CEP" id="cep" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="Rua" id="rua" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="Número" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="inputrow">
+          <input type="text" placeholder="Bairro" id="bairro" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="Cidade" id="cidade" required>
+        </div>
+        <div class="inputrow">
+          <input type="text" placeholder="Estado" id="estado" required>
+        </div>
+      </div>
+      <div class="inputrow">
+        <input type="text" placeholder="Complemento" required>
+      </div>
+   
+      <div class="row">
+        <input type="submit" value="Cadastrar">
+        <input type="button" class="reset-button" value="Recomeçar cadastro" onclick="resetForm()">
+      </div>
+      
+      <div class="separator">
+        <span></span>
+        <span>ou</span>
+        <span></span>
+      </div>
+      <div class="alternate-login">
+        <span>Já possui conta?</span>
+        <a href="#" class="register-link">Realize Login➡</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function resetForm() {
+      document.getElementById("cep").value = "";
+      document.getElementById("rua").value = "";
+      document.getElementById("bairro").value = "";
+      document.getElementById("cidade").value = "";
+      document.getElementById("estado").value = "";
+    }
+
+    // Função para buscar o CEP na API ViaCEP
+    function searchCep() {
+      var cep = document.getElementById("cep").value.replace(/\D/g, "");
+      if (cep.length === 8) {
+        $.ajax({
+          url: "https://viacep.com.br/ws/" + cep + "/json/",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            if (!data.erro) {
+              document.getElementById("rua").value = data.logradouro;
+              document.getElementById("bairro").value = data.bairro;
+              document.getElementById("cidade").value = data.localidade;
+              document.getElementById("estado").value = data.uf;
+            }
+          }
+        });
+      }
+    }
+
+    // Evento de digitação no campo de CEP para buscar automaticamente
+    document.getElementById("cep").addEventListener("keyup", searchCep);
+
+    // Configuração do Google Places Autocomplete para o campo de cidade
+    var autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("cidade"),
+      { types: ["(cities)"] }
+    );
+  </script>
+</body>
+</html>

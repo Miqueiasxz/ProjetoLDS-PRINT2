@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Xapa Kente</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estilos CSS para a página */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      background-image:url("Imagens/Fundo.jpg");
+      background-size:cover;
+    }
+    
+    #header {
+      background-color: #077A7A;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    #header img {
+      max-width: 200px;
+      height: auto;
+    }
+    
+    #header h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    #header ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    #header ul li {
+      margin-right: 10px;
+    }
+    
+    #header ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    #header .icons {
+      display: flex;
+      align-items: center;
+    }
+    
+    #header .icons i {
+      font-size: 18px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    
+    #header .icons .cart-icon {
+      margin-right: 10px;
+    }
+    
+    #content {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+    
+    .product {
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    
+    .product img {
+      max-width: 150px;
+      height: auto;
+    }
+    
+    .product h3 {
+      margin-top: 10px;
+    }
+    
+    .product p {
+      margin: 10px 0;
+    }
+    
+    .product button {
+      background-color: #d50000;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .product button:hover {
+      background-color: #b30000;
+    }
+    
+    #footer {
+      background-color: #077A7A;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    #footer .advertise {
+      display: flex;
+      align-items: center;
+    }
+    
+    #footer .advertise img {
+      max-width: 100px;
+      height: auto;
+    }
+    
+    #footer .advertise p {
+      margin-left: 10px;
+      font-size: 18px;
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+    #footer .feedback {
+      margin-left: auto;
+      text-align: right;
+    }
+    
+    #footer .feedback input[type="text"],
+    #footer .feedback input[type="email"],
+    #footer .feedback button {
+      margin-top: 10px;
+    }
+    
+    #footer .feedback button {
+      background-color: #d50000;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    #footer .feedback button:hover {
+      background-color: #b30000;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <img src="Imagens/MKX LOGO.png" alt="Logomarca">
+    <h1>Menu Xapa Kente</h1>
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#restaurantes">Restaurantes</a></li>
+      <li><a href="#cardapios">Cardápios</a></li>
+      <li><a href="#bebidas">Bebidas</a></li>
+    </ul>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-shopping-cart cart-icon"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="product">
+      <img src="Imagens/First.jpeg" alt="Alimento 1">
+      <h3>Alimento 1</h3>
+      <p>Descrição do alimento 1.</p>
+      <p>Preço: R$ 10,00</p>
+      <button>Pratos</button>
+    </div>
+    
+    <div class="product">
+      <img src="Imagens/Second.jpeg" alt="Alimento 2">
+      <h3>Alimento 2</h3>
+      <p>Descrição do alimento 2.</p>
+      <p>Preço: R$ 12,00</p>
+      <button>Bebidas</button>
+    </div>
+    
+    <div class="product">
+      <img src="Imagens/Third.jpeg" alt="Alimento 3">
+      <h3>Alimento 3</h3>
+      <p>Descrição do alimento 3.</p>
+      <p>Preço: R$ 8,00</p>
+      <button>Massas</button>
+    </div>
+    
+    <div class="product">
+      <img src="Imagens/Four.jpeg" alt="Alimento 4">
+      <h3>Alimento 4</h3>
+      <p>Descrição do alimento 4.</p>
+      <p>Preço: R$ 9,50</p>
+      <button>Salgados</button>
+    </div>
+    
+    <div class="product">
+      <img src="Imagens/Five.jpeg" alt="Alimento 5">
+      <h3>Alimento 5</h3>
+      <p>Descrição do alimento 5.</p>
+      <p>Preço: R$ 11,50</p>
+      <button>Comidas Tipicas</button>
+    </div>
+    
+    <div class="product">
+      <img src="Imagens/Six.jpeg" alt="Alimento 6">
+      <h3>Alimento 6</h3>
+      <p>Descrição do alimento 6.</p>
+      <p>Preço: R$ 7,50</p>
+      <button>Comidas Saudáveis</button>
+    </div>
+  </div>
+  
+  <div id="footer">
+    <div class="advertise">
+      <p style="color: blue; text-decoration: underline; cursor: pointer;">Anuncie seu restaurante aqui!</p>
+    </div>
+    <div class="feedback">
+      <h3>Envie-nos seu feedback</h3>
+      <input type="text" placeholder="Nome">
+      <input type="email" placeholder="E-mail">
+      <button>Enviar</button>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var advertiseLink = document.querySelector(".advertise");
+      advertiseLink.addEventListener("click", function() {
+        window.location.href = "cadastroRestaurante";
+      });
+    });
+  </script>
+</body>
+</html>

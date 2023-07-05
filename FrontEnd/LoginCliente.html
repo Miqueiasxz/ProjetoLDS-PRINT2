@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tela de Login</title>
+  <style>
+    body {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background-image:url("Imagens/Fundo.jpg") ;
+      background-size:cover;
+    }
+
+    .container { 
+      background-color: white;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .container h2 {
+      margin-top: 20px;
+    }
+
+    .container img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+      filter: brightness(70%);
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .container .checkbox-forgot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .container .checkbox-forgot label {
+      margin-right: 5px;
+    }
+
+    .container .checkbox-forgot a {
+      margin-left: 5px;
+      color: #93C5FC; /* Azul claro */
+    }
+
+    .container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .container input[type="submit"]:hover {
+      background-color: #0d8aed;
+    }
+
+    .container .alternate-login {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .container .alternate-login span {
+      color: #333;
+    }
+
+    .container .register-link {
+      color: #2196F3;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .container .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .container .separator::before,
+    .container .separator::after {
+      content: "";
+      flex-grow: 1;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .container .separator span {
+      margin: 0 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="Imagens/MKX LOGO.png" class="logo" alt="Logo da empresa">
+    <h2>Bem-vindo de volta!</h2>
+    <form>
+      <input type="text" placeholder="Usuário" required>
+      <input type="password" placeholder="Senha" required>
+      <div class="checkbox-forgot">
+        <label>
+          <input type="checkbox" name="manter-se-conectado">
+          Manter-se conectado
+        </label>
+        <a href="#" class="forgot-link">Esqueceu sua senha?</a>
+      </div>
+      <input type="submit" value="Entrar">
+      <div class="separator">
+        <span></span>
+        <span>ou</span>
+        <span></span>
+      </div>
+      <div class="alternate-login">
+        <span>Ainda não possui conta?</span>
+        <a href="#" class="register-link">Cadastre-se➡</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
