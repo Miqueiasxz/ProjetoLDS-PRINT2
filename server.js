@@ -34,7 +34,7 @@ router.post('/cadastroRestaurante', (req, res) => {
 });
 
 // Rota para lidar com o cadastro
-router.get('/pegarRestaurantes', (req, res) => {
+router.post('/cadastroRestaurante', (req, res) => {
 
   // Cria a query SQL para inserir os dados na tabela adequada
   const query = `INSERT INTO restaurante (razao_social, cnpj, nome_restaurante, nome_proprietario, email, telefone, cep, rua, numero, bairro, cidade, estado, complemento, senha) 
