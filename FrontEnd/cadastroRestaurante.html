@@ -161,21 +161,21 @@
       </div>
       <div class="row">
         <div class="inputrow">
-          <input type="email" placeholder="E-mail" required>
+          <input type="email" placeholder="E-mail" required style="width: 170%; margin-right: 0px;">
         </div>
         <div class="inputrow">
-    <input type="text" placeholder="Telefone" id="telefone" required style="width: 30%; margin-left: 287px;">
-       </div>
+    <input type="text" placeholder="Telefone" id="telefone" required onkeypress="return event.charCode >= 48 && event.charCode <= 57" oninput="formatPhoneNumber(this)" maxlength="15" style="width: 30%; margin-left: 287px;">
+        </div>
       </div>
       <div class="row">
         <div class="inputrow">
-  <input type="text" placeholder="CEP" id="cep" required style="width: 95%; margin-left: 0px;">
+          <input type="text" placeholder="CEP" id="cep" required style="width: 95%; margin-left: 0px;">
         </div>
         <div class="inputrow">
   <input type="text" placeholder="Rua" id="rua" required style="width: 114%; margin-right: 500px;">
         </div>
         <div class="inputrow">
-    <input type="text" placeholder="Número" required style="width: 50%; margin-left: 75px;">
+          <input type="text" placeholder="Número" id="numero" required style="width: 50%; margin-left: 75px;">
         </div>
       </div>
       <div class="row">
@@ -247,6 +247,41 @@
       document.getElementById("cidade"),
       { types: ["(cities)"] }
     );
+        // Função para formatar o número de telefone como número de celular
+    function formatPhoneNumber(input) {
+      var phoneNumber = input.value.replace(/\D/g, "");
+
+      if (phoneNumber.length > 2) {
+        phoneNumber = "(" + phoneNumber.substring(0, 2) + ")" + phoneNumber.substring(2);
+
+        if (phoneNumber.length > 10) {
+          phoneNumber = phoneNumber.substring(0, 9) + "-" + phoneNumber.substring(9);
+        }
+      }
+
+      if (phoneNumber.length > 15) {
+        phoneNumber = phoneNumber.substring(0, 15);
+      }
+
+      input.value = phoneNumber;
+    }
   </script>
+  <script>
+    // Restringir campo "Número" para aceitar apenas números
+    document.getElementById("numero").addEventListener("input", function (event) {
+      var input = event.target;
+      var value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+      input.value = value;
+    });
+  </script>
+  <script>
+    // Restringir campo "CEP" para aceitar apenas números
+    document.getElementById("cep").addEventListener("input", function (event) {
+      var input = event.target;
+      var value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+      input.value = value;
+    });
+  </script>
+    
 </body>
 </html>
