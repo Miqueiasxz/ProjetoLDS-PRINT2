@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfis de Restaurantes - Menu Xapa Kente</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .search-container {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .search-container input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .search-container button {
+    padding: 8px 12px;
+    background-color: #007F3D;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .restaurant-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  .restaurant-card img {
+    max-width: 100px;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  .restaurant-info {
+    flex: 1;
+    color: #333;
+  }
+  h1 {
+    color: #007F3D;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+  }
+  h2 {
+    color: #007F3D;
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+  p {
+    color: #555;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  .contact-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .contact-info a {
+    color: #007F3D;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+  .order-link {
+    display: inline-block;
+    color: #fff;
+    background-color: #007F3D;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  .order-link:hover {
+    background-color: #005f2a;
+  }
+  .status-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  .online {
+    background-color: #5cb85c;
+  }
+  .offline {
+    background-color: #d9534f;
+  }
+  .opening-hours {
+    color: #777;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Restaurantes cadastrados no Menu Xapa Kente</h1>
+
+  <!-- Campo de busca -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar por nome do restaurante...">
+    <button onclick="searchRestaurants()">Buscar</button>
+  </div>
+
+  <!-- Lista de cards de restaurante -->
+  <div id="restaurantList">
+    <div class="restaurant-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKP6biEbZaK-eg1Lq0RNJyfd5WuP96UzJzWmdeDcSCJsJSAqnzGthLJA2xv1HkZgJ8x0k&usqp=CAU" alt="Restaurante 1">
+      <div class="restaurant-info">
+        <h2>Restaurante do Chef</h2>
+        <p>Localização: Rua da Comida, 123</p>
+        <p class="contact-info">
+          Contato: (11) 1234-5678
+          <a href="https://api.whatsapp.com/send?phone=551112345678" target="_blank">Chamar no WhatsApp</a>
+        </p>
+        <p>
+          <span class="status-icon online"></span> Online
+        </p>
+        <p class="opening-hours">
+          Horário de funcionamento: Seg-Sex: 10h - 22h | Sáb-Dom: 12h - 23h
+        </p>
+        <a href="link-do-pedido-restaurante1" class="order-link">Faça seu pedido agora</a>
+      </div>
+    </div>
+    <div class="restaurant-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQc3K7kTEFuYQX9rpa8EgHVOF2SLPL9NqUVebCBPVoDVWJBoxUaBmBCnCj1G_A1GkMh_4&usqp=CAU" alt="Restaurante 2">
+      <div class="restaurant-info">
+        <h2>Delícias do Sabor</h2>
+        <p>Localização: Av. dos Sabores, 456</p>
+        <p class="contact-info">
+          Contato: (22) 9876-5432
+          <a href="https://api.whatsapp.com/send?phone=552298765432" target="_blank">Chamar no WhatsApp</a>
+        </p>
+        <p>
+          <span class="status-icon offline"></span> Offline
+        </p>
+        <p class="opening-hours">
+          Horário de funcionamento: Seg-Dom: 11h - 21h
+        </p>
+        <a href="link-do-pedido-restaurante2" class="order-link">Faça seu pedido agora</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão de Voltar -->
+  <button id="backButton" onclick="showAllRestaurants()" style="display: none;">Voltar</button>
+
+  <script>
+    function searchRestaurants() {
+      var input = document.getElementById('searchInput').value.toLowerCase();
+      var restaurantCards = document.querySelectorAll('.restaurant-card');
+      var backButton = document.getElementById('backButton');
+
+      restaurantCards.forEach(function(card) {
+        var restaurantName = card.querySelector('h2').innerText.toLowerCase();
+
+        if (restaurantName.includes(input)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      backButton.style.display = 'inline';
+    }
+
+    function showAllRestaurants() {
+      var restaurantCards = document.querySelectorAll('.restaurant-card');
+      var backButton = document.getElementById('backButton');
+
+      restaurantCards.forEach(function(card) {
+        card.style.display = 'flex';
+      });
+
+      backButton.style.display = 'none';
+    }
+  </script>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

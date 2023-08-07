@@ -1,6 +1,6 @@
 const sequelize = require('../index')
 
-const restaurante = sequelize.define('restaurante',{
+export const restaurante = sequelize.define('restaurante',{
      cod_restaurante:{
         type: DataTypes.INT,
         allowNull: false

@@ -9,7 +9,7 @@
       align-items: center;
       justify-content: center;
       font-family: Arial, sans-serif;
-      background-image:url("Imagens/Fundo.jpg") ;
+      background-image:url("Imagens/22d7bfc5-1cd4-4884-b0dd-176de6f39985.jpeg") ;
       background-size:cover;
     }
 
@@ -112,9 +112,9 @@
   <div class="container">
     <img src="Imagens/MKX LOGO.png" class="logo" alt="Logo da empresa">
     <h2>Bem-vindo de volta!</h2>
-    <form>
-      <input type="text" placeholder="Usuário" required>
-      <input type="password" placeholder="Senha" required>
+    <form onsubmit="return onSubmitLogin()">
+      <input type="text" id="username" placeholder="Usuário" required>
+      <input type="password" id="password" placeholder="Senha" required>
       <div class="checkbox-forgot">
         <label>
           <input type="checkbox" name="manter-se-conectado">
@@ -123,6 +123,7 @@
         <a href="#" class="forgot-link">Esqueceu sua senha?</a>
       </div>
       <input type="submit" value="Entrar">
+      <div class="error-message" style="color: red; margin-top: 10px; display: none;">Credenciais incorretas. Tente novamente.</div>
       <div class="separator">
         <span></span>
         <span>ou</span>
@@ -130,9 +131,40 @@
       </div>
       <div class="alternate-login">
         <span>Ainda não possui conta?</span>
-        <a href="#" class="register-link">Cadastre-se➡</a>
-      </div>
+        <a href="/CadastroCliente.html" class="register-link">Cadastre-se➡</a>
+      </div>         
     </form>
   </div>
+
+  <!-- Script para manipular o envio do formulário e exibir a mensagem de erro -->
+  <script>
+    function onSubmitLogin() {
+      // Obter os campos de usuário e senha do formulário
+      const usernameField = document.getElementById('username');
+      const passwordField = document.getElementById('password');
+
+      // Verificar se os campos estão preenchidos corretamente
+      const username = usernameField.value;
+      const password = passwordField.value;
+      // Neste exemplo, vamos assumir que o nome de usuário e a senha são "dummy"
+      if (username === 'dummy' && password === 'dummy') {
+        // Se as credenciais estiverem corretas, deixe o formulário ser enviado normalmente
+        return true;
+      } else {
+        // Se as credenciais estiverem incorretas, limpe os campos, exiba a mensagem de erro e evite o envio do formulário
+        usernameField.value = '';
+        passwordField.value = '';
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.style.display = 'block';
+        return false;
+      }
+    }
+  </script>
 </body>
 </html>
+Com essa modificação, quando as credenciais forem inseridas incorretamente, uma mensagem de erro será exibida abaixo do botão "Entrar". A mensagem de erro ficará oculta inicialmente e será exibida apenas quando as credenciais estiverem incorretas. Isso fornecerá um feedback claro ao usuário caso ocorra um erro de login.
+
+
+
+
+

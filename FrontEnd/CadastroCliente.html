@@ -12,7 +12,7 @@
             font-family: Arial, sans-serif;
             justify-content: center;
             font-family: Arial, sans-serif;
-            background-image:url("Imagens/Fundo.jpg") ;
+            background-image:url("Imagens/b038514b-1112-4732-84c8-2898d839b594.jpeg") ;
             background-size:cover;
         }
         .cadastro-container {
@@ -89,7 +89,7 @@
 <body>
     <div class="cadastro-container">
         <div class="logo">
-            <img src="Imagens/MKX LOGO.png alt="Logo da Empresa">
+            <img src="Imagens/MKX LOGO.png"Logo da Empresa">
         </div>
         <h2>Cadastro de Cliente</h2>
         <form>
@@ -116,9 +116,42 @@
                 <p style="margin-top: 10px;"><span class="line"></span> ou <span class="line"></span></p>
             </div>
             <div class="form-group">
-                <p style="margin-bottom: 0;">Já possui conta?&nbsp;<a href="#" style="color: #4285f4;">Fazer Login</a></p>
-            </div>
+                <p style="margin-bottom: 0;">Já possui conta?&nbsp;<a href="/login" style="color: #4285f4;">Fazer Login</a></p>
+              </div>              
         </form>
-    </div>
-</body>
-</html>
+        <div class="success-message" style="display: none;">
+            Cadastro realizado com sucesso!
+            <div class="success-message" style="display: none;">
+                Cadastro realizado com sucesso!
+            </div>
+        </div>
+    
+        <script>
+            // Adicionando manipulação de envio do formulário
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                // Aqui você pode enviar os dados do formulário para o backend
+                // e, após o cadastro ser concluído com sucesso, mostrar a mensagem de sucesso e limpar os campos
+                // Por enquanto, vamos apenas exibir a mensagem de sucesso e limpar os campos para fins de demonstração.
+                showSuccessMessage();
+                clearFormFields();
+            });
+    
+            // Função para mostrar a mensagem de sucesso
+            function showSuccessMessage() {
+                const successMessage = document.querySelector('.success-message');
+                successMessage.style.display = 'block';
+            }
+    
+            // Função para limpar os campos do formulário
+            function clearFormFields() {
+                const formInputs = form.querySelectorAll('input[type="text"], input[type="password"], input[type="tel"], input[type="email"]');
+                formInputs.forEach(input => {
+                    input.value = '';
+                });
+            }
+        </script>
+    </body>
+    </html>
+    

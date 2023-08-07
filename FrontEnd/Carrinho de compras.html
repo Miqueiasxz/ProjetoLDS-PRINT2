@@ -1,0 +1,214 @@
+<!Carrinho de compras html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2ecc71;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .green-text {
+            color: #2ecc71;
+        }
+        .waiting {
+            color: #f39c12;
+        }
+        .confirmed {
+            color: #2ecc71;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .cancel-button {
+            background-color: #e74c3c;
+        }
+        .cancel-button:hover {
+            background-color: #c0392b;
+        }
+        .top-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .top-icons i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #333;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-icons">
+            <i class="fas fa-shopping-cart"></i>
+            <h1 style="margin: 0; text-align: center;">Carrinho de Compras</h1>
+        </div>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Descrição do Produto</th>
+                    <th>Quantidade</th>
+                    <th>Status de Entrega</th>
+                    <th>Modalidade de Pagamento</th>
+                    <th>Nome do Restaurante</th>
+                    <th>Endereço do Restaurante</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="green-text">2023-08-01 12:30</td>
+                    <td class="green-text">Pizza de Calabresa</td>
+                    <td class="green-text">1</td>
+                    <td class="confirmed">Pagamento Confirmado</td>
+                    <td class="green-text">Cartão de Crédito</td>
+                    <td class="green-text">Pizza House</td>
+                    <td class="green-text">Rua da Pizza, 123</td>
+                    <td class="action-buttons">
+                        <button class="button cancel-button" onclick="cancelOrder(this)">Cancelar</button>
+                        <button class="button" onclick="confirmPayment(this)">Confirmar Pagamento</button>
+                    </td>
+                </tr>
+                <!-- Outros pedidos ... -->
+            </tbody>
+        </table>
+        <div class="buttons">
+            <button class="button" onclick="goBack()">Voltar</button>
+        </div>
+    </div>
+    
+    <!-- Inclua a biblioteca do Google Payments e seu código personalizado aqui -->
+    <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+    <script>
+        function cancelOrder(button) {
+            var row = button.parentNode.parentNode;
+            row.remove();
+            // Aqui você pode adicionar lógica para cancelar o pedido no backend
+        }
+
+        function confirmPayment(button) {
+            var cardNumber = prompt('Digite o número do cartão de crédito (simulação):');
+            var cardExpiration = prompt('Digite a data de validade do cartão de crédito (simulação):');
+            
+            if (cardNumber && cardExpiration) {
+                // Simulação de confirmação de pagamento com a API do Google Payments
+                button.disabled = true; // Desabilitar o botão durante a simulação
+                
+                try {
+                    var paymentsClient = new google.payments.api.PaymentsClient({environment: 'TEST'});
+                    var paymentDataRequest = {
+                        merchantInfo: {
+                            merchantId: 'YOUR_MERCHANT_ID',
+                            merchantName: 'Nome do Seu Restaurante'
+                        },
+                        transactionInfo: {
+                            totalPriceStatus: 'FINAL',
+                            totalPrice: '10.00', // Substitua pelo valor real
+                            currencyCode: 'USD' // Substitua pela moeda real
+                        }
+                    };
+                    
+                    paymentsClient.loadPaymentData(paymentDataRequest)
+                        .then(function(paymentData) {
+                            // Aqui você pode adicionar lógica para processar o pagamento confirmado
+                            // Atualizar o status do pedido para "Confirmado"
+                            var row = button.parentNode.parentNode;
+                            var statusCell = row.querySelector('.waiting');
+                            statusCell.textContent = 'Pagamento Confirmado';
+                            statusCell.classList.remove('waiting');
+                            statusCell.classList.add('confirmed');
+                            
+                            // Exibir mensagem de sucesso
+                            alert('Pagamento confirmado com sucesso!');
+                        })
+                        .catch(function(error) {
+                            console.error('Erro ao confirmar pagamento:', error);
+                            button.disabled = false;
+                            alert('Erro ao confirmar pagamento. Tente novamente mais tarde.');
+                        });
+                } catch (error) {
+                    console.error('Erro na integração com o Google Payments:', error);
+                    button.disabled = false;
+                    alert('Erro na integração com o Google Payments. Pagamento não confirmado.');
+                }
+            } else {
+                alert('Dados do cartão inválidos. Pagamento não confirmado.');
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 const sequelize = require('../index')
 
-const cliente = sequelize.define('cliente',{
+export const cliente = sequelize.define('cliente',{
     cod_cliente:{
         type: DataTypes.INT,
         allowNull: false

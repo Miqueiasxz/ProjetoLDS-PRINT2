@@ -1,6 +1,6 @@
 const sequelize = require('../index')
 
-const item_pedido = sequelize.define('item_pedido',{
+export const item_pedido = sequelize.define('item_pedido',{
     cod_item:{
         type: DataTypes.INT,
         allowNull: false
