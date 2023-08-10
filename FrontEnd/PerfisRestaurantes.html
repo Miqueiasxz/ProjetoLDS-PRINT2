@@ -136,7 +136,7 @@
         <p class="opening-hours">
           Horário de funcionamento: Seg-Sex: 10h - 22h | Sáb-Dom: 12h - 23h
         </p>
-        <a href="link-do-pedido-restaurante1" class="order-link">Faça seu pedido agora</a>
+        <a href="/pedidos" class="order-link">Faça seu pedido agora</a>
       </div>
     </div>
     <div class="restaurant-card">
@@ -154,7 +154,7 @@
         <p class="opening-hours">
           Horário de funcionamento: Seg-Dom: 11h - 21h
         </p>
-        <a href="link-do-pedido-restaurante2" class="order-link">Faça seu pedido agora</a>
+        <a href="/pedidos" class="order-link">Faça seu pedido agora</a>
       </div>
     </div>
   </div>
@@ -192,6 +192,12 @@
       backButton.style.display = 'none';
     }
   </script>
+  <script>
+    function redirectToPedidos() {
+        window.location.href = "/pedidos"; // A rota pode variar dependendo da configuração no seu servidor
+    }
+</script>
+
 </div>
 </body>
 </html>

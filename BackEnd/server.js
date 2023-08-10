@@ -63,7 +63,6 @@ router.get('/restaurantes', (req, res) => {
   res.sendFile(path.join(__dirname, '../FrontEnd/PerfisRestaurantes.html'));
 });
 
-
 // Rota para a tela de cadastro de cliente
 router.get('/cadastroCliente', (req, res) => {
   res.sendFile(path.join(__dirname, '../FrontEnd/CadastroCliente.html'));
@@ -73,5 +72,24 @@ router.get('/cadastroCliente', (req, res) => {
 router.get('/carrinho', (req, res) => {
   res.sendFile(path.join(__dirname, '../FrontEnd/Carrinho de Compras.html'));
 });
+
+// Rota para a página de controle de restaurante
+router.get('/controleRestaurante', (req, res) => {
+  res.sendFile(path.join(__dirname, '../FrontEnd/Controle de restaurante.html'));
+});
 // Resto das rotas...
 
+app.post('/login', (req, res) => {
+  const { username, password } = req.body; // Supondo que você obtém os dados do formulário
+
+  // ... lógica de autenticação ...
+
+  // Se as credenciais forem válidas
+  if (autenticacaoValida) {
+    // Redirecionar para a página de controle de restaurante
+    res.redirect('../FrontEnd/Tela Inicial.html'); // Use o mesmo caminho definido na rota
+  } else {
+    // Lidar com autenticação inválida
+    res.send('Credenciais inválidas');
+  }
+});

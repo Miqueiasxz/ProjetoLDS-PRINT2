@@ -226,12 +226,13 @@
     <ul>
       <li><a href="#inicio">Início</a></li>
       <li><a href="/restaurantes">Restaurantes</a></li>
-      <li><a href="#cardapios">Cardápios</a></li>
-      <li><a href="#bebidas">Bebidas</a></li>
+      <li><a href="/pedidos">Cardápios</a></li>
+      <li><a href="/pedidos?tipo=bebidas">Bebidas</a></li>
+      <li><a href="/controleRestaurante">Controle de Restaurante</a></li> <!-- Novo botão -->
     </ul>
     <div class="icons">
-      <i class="fas fa-search"></i>
-      <a href="/carrinho"><i class="fas fa-shopping-cart cart-icon"></i></a>
+      <i class="fas fa-search" onclick="redirectToRestaurantes()"></i>
+        <a href="/carrinho"><i class="fas fa-shopping-cart cart-icon"></i></a>
       <a href="/login"><i class="fas fa-user"></i></a>
     </div>
   </div>
@@ -295,7 +296,7 @@
     <a href="https://www.instagram.com/miqueiasalencar2002/" target="_blank" style="color: #fff; text-decoration: none;">
       <i class="fab fa-instagram" style="font-size: 24px;"></i>
     </a><br><br>
-    <span style="text-decoration: none;">Quem Somos: Um grupo de Estudantes em aprendizado do curso de Sistemas de Informação ainda em estudos!</span>
+    <span style="text-decoration: none;">Quem Somos</span>
   </div>
 <!-- Formulário para coletar sugestões (mais organizado) -->
 <div id="feedback-form" style="color: #fff;">
@@ -336,5 +337,10 @@
       showBanner(currentIndex);
     });
   </script>
+  <script>
+    function redirectToRestaurantes() {
+        window.location.href = "/restaurantes";
+    }
+</script>
 </body>
 </html>

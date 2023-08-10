@@ -3,6 +3,11 @@
 <head>
   <title>Pedidos de Restaurante</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Adicione a linha abaixo para incluir a biblioteca qrcode.js -->
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <!-- ... Seu código CSS existente ... -->
+</head>
+
   <style>
     body {
       margin: 0;
@@ -95,6 +100,25 @@
       font-weight: bold;
       font-size: 16px;
     }
+    .botao {
+  flex: 1;
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #1E7373;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao:hover {
+  background-color: #155C5C;
+}
+#qrcode-container {
+  margin-top: 20px; /* Adicione espaço acima do QR Code */
+  margin-bottom: 20px; /* Adicione espaço abaixo do QR Code */
+}
+
     .buttons {
       margin-top: 20px;
       text-align: center;
@@ -257,6 +281,21 @@
         <button onclick="limparPedido()">Limpar Pedido</button>
         <button onclick="enviarPedido()">Adicionar ao Carrinho</button>
       </div>
+      <div id="pixPayment">
+        <h3>Pagamento por Pix</h3>
+        <label for="valorPix">Valor:</label>
+        <input type="text" id="valorPix" pattern="[0-9]*" required oninput="formatarValor(this)"><br><br>
+    
+        <label for="chavePix">Chave Pix:</label>
+        <input type="text" id="chavePix" required><br><br>
+    
+        <button class="botao" onclick="gerarQRCode()">Gerar QR Code de Pagamento</button>
+        <div id="qrcode-container"></div>
+
+        <div id="qrcode"></div>
+      </div>
+    </div>
+    
       <div id="pedido-enviado" style="display: none;">Pedido adicionado ao carrinho!</div>
     </div>
   </div>
@@ -300,6 +339,73 @@
       window.location.href = "/restaurantes";
     }
   </script>
+ <script>
+  function formatarValor(input) {
+    // Remove tudo exceto números
+    let valor = input.value.replace(/\D/g, '');
+
+    // Formata o valor com R$ e vírgulas
+    if (valor.length > 2) {
+      valor = `${valor.slice(0, -2)}.${valor.slice(-2)}`;
+    } else {
+      valor = `0.${valor.padStart(2, '0')}`;
+    }
+
+    input.value = `R$ ${valor}`;
+  }
+
+  function gerarQRCode() {
+    const valorPixInput = document.getElementById("valorPix");
+    const valorPix = parseFloat(valorPixInput.value.replace('R$ ', ''));
+
+    const chavePix = "151f6d29-2e03-4496-afb0-2aef8f81035b"; // Substitua pela sua chave Pix
+
+    const urlPix = `https://pix.example.com/pagamento?chave=${chavePix}&valor=${valorPix.toFixed(2)}`;
+
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: urlPix,
+      width: 128,
+      height: 128,
+    });
+  }
+</script>
+
+  <script>
+    function adicionarPedido(prato, preco) {
+      var tbody = document.getElementById('itens-pedido');
+      var totalElement = document.getElementById('total-pedido');
+  
+      var row = document.createElement('tr');
+      var pratoCell = document.createElement('td');
+      pratoCell.textContent = prato;
+      var precoCell = document.createElement('td');
+      precoCell.textContent = 'R$ ' + preco.toFixed(2);
+  
+      row.appendChild(pratoCell);
+      row.appendChild(precoCell);
+      tbody.appendChild(row);
+  
+      var total = parseFloat(totalElement.value.substring(2));
+      total += preco;
+      totalElement.value = 'R$ ' + total.toFixed(2);
+  
+      // Atualizar valor do input de total
+      document.getElementById('valorPix').value = total.toFixed(2);
+    }
+  
+    function limparPedido() {
+      var tbody = document.getElementById('itens-pedido');
+      var totalElement = document.getElementById('total-pedido');
+  
+      tbody.innerHTML = '';
+      totalElement.value = 'R$ 0';
+      // Limpar também o valor do input de total
+      document.getElementById('valorPix').value = '0.00';
+    }
+  
+  </script>
+  
+  
 </body>
 </html>
 

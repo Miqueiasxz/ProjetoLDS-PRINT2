@@ -81,6 +81,9 @@
             display: flex;
             gap: 1rem;
         }
+        .price-cell {
+        text-align: left; /* Alinhar à esquerda */
+    }
     </style>
 </head>
 <body>
@@ -94,6 +97,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Preço</th>
                     <th>Data/Hora</th>
                     <th>Descrição do Produto</th>
                     <th>Quantidade</th>
@@ -106,16 +110,18 @@
             </thead>
             <tbody>
                 <tr>
+                    <td class="green-text">R$13:15</td>
                     <td class="green-text">2023-08-01 12:30</td>
                     <td class="green-text">Pizza de Calabresa</td>
                     <td class="green-text">1</td>
-                    <td class="confirmed">Pagamento Confirmado</td>
+                    <td class="confirmed">Aguardando Pagamento</td>
                     <td class="green-text">Cartão de Crédito</td>
                     <td class="green-text">Pizza House</td>
                     <td class="green-text">Rua da Pizza, 123</td>
                     <td class="action-buttons">
                         <button class="button cancel-button" onclick="cancelOrder(this)">Cancelar</button>
-                        <button class="button" onclick="confirmPayment(this)">Confirmar Pagamento</button>
+                        <button class="button" onclick="confirmPayment(this)">Pagar com Cartão</button>
+                        <button class="button" onclick="payWithPix(this)">Pagar com Pix</button> <!-- Novo botão -->
                     </td>
                 </tr>
                 <!-- Outros pedidos ... -->
@@ -171,7 +177,7 @@
                             alert('Pagamento confirmado com sucesso!');
                         })
                         .catch(function(error) {
-                            console.error('Erro ao confirmar pagamento:', error);
+                            console.error('Erro ao confi:', error);
                             button.disabled = false;
                             alert('Erro ao confirmar pagamento. Tente novamente mais tarde.');
                         });
@@ -189,6 +195,25 @@
             window.history.back();
         }
     </script>
+    <script>
+        function payWithPix(button) {
+            var row = button.parentNode.parentNode;
+            var valorPedido = row.querySelector('.preco').textContent; // Certifique-se de usar a classe correta
+    
+            // Defina o valor no campo de valorPix
+            document.getElementById('valorPix').value = valorPedido.replace('R$ ', '');
+    
+            // Defina a chave Pix (substitua pela sua chave real)
+            document.getElementById('chavePix').value = "sua_chave_pix_aqui";
+    
+            // Chame a função para gerar o QR Code
+            gerarQRCode();
+            
+            // Exiba o elemento de QR Code
+            document.getElementById('qrcode-container').style.display = 'block';
+        }
+    </script>
+    
 </body>
 </html>
 
